@@ -1,0 +1,48 @@
+<!doctype html>
+<html class="no-js" lang="" ng-app="PostApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>meantest</title>
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/service/service.js"></script>
+
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-controller="mainController">
+
+
+    <div class="container">
+      <div class="title">
+        <h1>MicroBlog</h1>
+      </div>
+      <div class="form">
+        <form>
+          <input type="text" placeholder="Type here!" ng-model="post.text" maxlength="160">
+        </form>
+          <button type="submit" ng-click="addPost()">Post</button> {{ post.text.length }}
+
+      </div>
+    </div>
+
+    <div ng-repeat="text in posts track by $index">
+      <div class="post-container">
+        <p> {{ text.text }} </p>
+        <button ng-click="deletePost(text._id)">x</button>
+      </div>
+    </div>
+
+    <!-- build:js scripts/main.js -->
+
+    <!-- endbuild -->
+  </body>
+</html>
