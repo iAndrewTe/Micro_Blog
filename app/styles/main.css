@@ -1,7 +1,39 @@
+.container {
+  width: 860px;
+  margin: 0 auto;
+  background: white;
+  padding: 50px;
+  -moz-box-shadow: 0 0 10px #000000;
+  -webkit-box-shadow: 0 0 10px #000000;
+  box-shadow: 0 0 10px #000000;
+  text-align: center;
+  display: inline-block;
+  height: 1%;
+  background: none;
+}
 .title {
   text-align: center;
 }
 
 .form {
   text-align: center;
+}
+
+.post-container {
+  width: 400px;
+  background-color: #f9f9f9;
+  text-align: center;
+  border-radius: 5%;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  margin: 20px auto;
+}
+
+.text-container {
+  display: inline-block;
+}
+
+.close {
+  float: right;
 }

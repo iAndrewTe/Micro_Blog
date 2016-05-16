@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>meantest</title>
+    <title>Micro Blog</title>
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="shortcut icon" href="./images/Andrewjte_Logo.png">
     <!-- Place favicon.ico in the root directory -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script src="scripts/app.js"></script>
@@ -32,15 +32,16 @@
           <button type="submit" ng-click="addPost()">Post</button> {{ post.text.length }}
 
       </div>
-    </div>
 
-    <div ng-repeat="text in posts track by $index">
-      <div class="post-container">
-        <p> {{ text.text }} </p>
-        <button ng-click="deletePost(text._id)">x</button>
+
+
+      <div class="post-container" ng-repeat="text in posts track by $index">
+        <div class="text-container">
+          <p> {{ text.text }} </p>
+        </div>
+        <button class="close" ng-click="deletePost(text._id)">&times</button>
       </div>
     </div>
-
     <!-- build:js scripts/main.js -->
 
     <!-- endbuild -->
