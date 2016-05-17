@@ -8,42 +8,25 @@
 
     <link rel="shortcut icon" href="./images/Andrewjte_Logo.png">
     <!-- Place favicon.ico in the root directory -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="scripts/main.js"></script>
-    <script src="scripts/service/service.js"></script>
-
 
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-controller="mainController">
+  <body>
 
+  <div ng-view></div>
 
-    <div class="container">
-      <div class="title">
-        <h1>MicroBlog</h1>
-      </div>
-      <div class="form">
-        <form>
-          <input type="text" placeholder="Type here!" ng-model="post.text" maxlength="160">
-        </form>
-          <button type="submit" ng-click="addPost()">Post</button> {{ post.text.length }}
-
-      </div>
-
-
-
-      <div class="post-container" ng-repeat="text in posts track by $index">
-        <div class="text-container">
-          <p> {{ text.text }} </p>
-        </div>
-        <button class="close" ng-click="deletePost(text._id)">&times</button>
-      </div>
-    </div>
     <!-- build:js scripts/main.js -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/service/service.js"></script>
 
-    <!-- endbuild -->
+
+
+
+  <!-- endbuild -->
   </body>
 </html>

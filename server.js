@@ -16,10 +16,4 @@ app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-M
 
 require('./routes.js')(app);
 
-app.get('*', function(req, res) {
-  res.sendFile('/Users/Andrew/Desktop/MEANTest/app/index.html')
-});
-
-
-
-app.listen(3000);
+app.listen(4000);
