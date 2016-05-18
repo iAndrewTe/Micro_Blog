@@ -1,6 +1,7 @@
 <div class="container">
+<div class="container">
   <div class="title">
-    <h1>MicroBlog</h1>
+    <h1>Game Blog</h1>
   </div>
   <div class="form">
     <form>
@@ -8,14 +9,6 @@
     </form>
     <button class="btn submit-btn" type="submit" ng-click="addPost()">Post</button> {{ post.text.length }}
 
-    <form name="myForm">
-      <input type="file" ngf-select ng-model="post.img" name="file"
-             accept="image/*" ngf-max-size="20MB" required
-             ngf-model-invalid="errorFile">
-    </form>
-
-    <img ng-show="post.img != null" ngf-thumbnail="post.img" class="thumb">
-    <button ng-click="post.img = null" ng-show="post.img">Remove</button>
   </div>
 
 
@@ -27,11 +20,3 @@
     <button class="close" ng-click="deletePost(text._id)">&times</button>
   </div>
 </div>
-
-
-
-
-
-
-
-

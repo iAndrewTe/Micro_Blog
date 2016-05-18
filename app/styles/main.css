@@ -1,3 +1,4 @@
+
 .container {
   width: 860px;
   margin: 0 auto;
@@ -13,6 +14,14 @@
 }
 .title {
   text-align: center;
+}
+
+.thumb {
+  width: 24px;
+  height: 24px;
+  float: none;
+  position: relative;
+  top: 7px;
 }
 
 .form {
@@ -36,4 +45,9 @@
 
 .close {
   float: right;
+}
+
+.submit-btn {
+  margin: 10px 0 10px 0;
+  display: inline;
 }
