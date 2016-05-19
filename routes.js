@@ -11,31 +11,25 @@ var Post = mongoose.model('Post', {
   },
   img: {
     type: String
-  }
-
-})
-
-var Posts = mongoose.model('Posts', {
-  text: {
+  },
+  blog_id: {
     type: String,
     default: ''
-  },
-  img: {
-    data: Buffer,
-    contentType: String
   }
-})
+});
 
-function gatherPosts(res) {
+function sendPosts(req,res) {
   // using mongoose to retrieve all posts in database
-  Post.find({}, function(err, post) {
-    // if its an err retrieving, send err
-    if (err) {
-      res.send(err);
-    }
-    // send posts in JSON format
-    res.json(post);
-  })
+  if (req.body.blog_id != undefined) {
+    Post.find({blog_id: req.body.blog_id}, function (err, post) {
+      // if its an err retrieving, send err
+      if (err) {
+        res.send(err);
+      }
+      // send posts in JSON format
+      res.send(post);
+    })
+  }
 };
 
 function uploadPhoto(req, res) {
@@ -44,7 +38,8 @@ function uploadPhoto(req, res) {
 
   var uploadDate = new Date();
   var tempPath = file.path;
-  var targetPath = path.join("./uploads/" + uploadDate + file.name);
+  var targetPath = path.join("./app/images/" + uploadDate + file.name);
+  var savedPath = "images/" + uploadDate + file.name;
 
   fs.rename(tempPath, targetPath, function (err) {
     if (err) {
@@ -53,63 +48,57 @@ function uploadPhoto(req, res) {
       console.log("Success")
     }
   });
+
+  return savedPath;
 };
 module.exports = function (app) {
 
   app.get('/api/blogposts', function (req, res) {
-    gatherPosts(res);
+    sendPosts(req, res);
+
   });
+
   app.use(multiPartMiddleWare);
- // app.post('/api/blogposts', multiPartMiddleWare, uploadPhoto);
   app.post('/api/blogposts', function (req, res) {
 
     if (req.files == undefined) {
       Post.create({
         text: req.body.text,
+        blog_id: req.body.blog_id
       }, function (err, post) {
         if (err)
           res.send(err);
 
-        gatherPosts(res);
+        sendPosts(req, res);
       });
     } else {
-      app.post('/api/blogposts', multiPartMiddleWare, function (req, res) {
-        var file = req.files.file;
-        console.log(file);
-
-        var uploadDate = new Date();
-        var tempPath = file.path;
-        var targetPath = path.join("./uploads/" + uploadDate + file.name);
-
-        fs.rename(tempPath, targetPath, function (err) {
-          if (err) {
-            console.log("Error uploading");
-          } else {
-            console.log("Success")
-          }
-        });
-      });
-      console.log('hey')
+      var picturePath = uploadPhoto(req, res); // upload image with post
       Post.create({
         text: req.body.text,
-        img: req.files.file.name
+        img: picturePath,
+        blog_id: req.body.blog_id
       }, function (err, post) {
         if (err)
           res.send(err);
 
-        gatherPosts(res);
+        sendPosts(req, res);
       });
-    }
+    };
   });
 
   app.delete('/api/blogposts/:post_id', function (req, res) {
-    Post.remove({
+     Post.remove({
       _id: req.params.post_id
     }, function (err, post) {
       if (err)
         res.send(err);
 
-      gatherPosts(res);
+       Post.find(function(err, post) {
+         if (err)
+          res.send(err);
+
+         res.send(post);
+       })
     });
-  });
+     });
 };

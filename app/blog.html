@@ -1,27 +1,34 @@
 <div class="container">
-  <button class="btn"><a href="#/next" ng-click="get()">Next Blog</a></button>
+  <button class="redirect-btn"><a href="#/next" ng-click="get()">Next Blog</a></button>
   <div class="title">
     <h1>MicroBlog</h1>
   </div>
-  <div class="form">
-    <form>
-      <input class="form-control" type="text" placeholder="Type here!" ng-model="post.text" maxlength="160">
-    </form>
+  <div class="form-container">
+    <div class="myForm">
+      <form>
+        <input class="form-control text-area" type="text" placeholder="Type here!" ng-model="post.text" maxlength="160" ng-submit="addPost('micro_blog')">
 
-        <button class="btn submit-btn" type="submit" ng-click="addPost('micro_blog')">Post</button> {{ 160 - post.text.length }}
+        <button class="btn submit-btn" type="submit" ng-click="addPost('micro_blog')">Post</button>
+        <p class="text-length"> {{ 160 - post.text.length }} </p>
 
-    <form name="myForm">
-      <input type="file" ngf-select ng-model="post.img" name="file"
-             @@ -19,12 +20,15 @@
+        <input type="file" ngf-select ng-model="post.img" name="file" accept="image/*" ngf-max-size="20MB" required
+             ngf-model-invalid="errorFile">
+        <img ng-show="myForm.file.$valid" ngf-thumbnail="post.img" class="thumb">
+        <button ng-click="post.img = null" ng-show="post.img">Remove</button>
+      </form>
+    </div>
   </div>
 
 
   <div class="post-container" ng-repeat="text in posts track by $index">
+
         <button class="close" ng-click="deletePost(text._id)">&times</button>
+
     <div class="text-container">
 
-            <img ng-if="text.img" class="blog-img" ng-src="{{ text.img }}" width="100em" height="100em">
-            <p class="blog-text"> {{ text.text }} </p>
+      <img ng-if="text.img" class="blog-img" ng-src="{{ text.img }}" width="100em" height="100em">
+
+      <p class="blog-text"> {{ text.text }} </p>
 
     </div>
   </div>
