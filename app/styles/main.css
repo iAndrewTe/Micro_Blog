@@ -1,7 +1,4 @@
-.body {
-  text-align: center;
-  float: none;
-}
+
 .container {
   width: 860px;
   margin: 0 auto;
@@ -11,6 +8,7 @@
   -webkit-box-shadow: 0 0 10px #000000;
   box-shadow: 0 0 10px #000000;
   text-align: center;
+  display: inline-block;
   height: 1%;
   background: none;
 }
@@ -47,16 +45,6 @@
 
 .close {
   float: right;
-  padding: 10px;
-}
-
-.blog-img {
-  padding: 10px;
-}
-
-.blog-text {
-  padding: 10px;
-  font-family: "source_sans", "Lucida Grande", "Lucida Sans", sans-serif;
 }
 
 .submit-btn {
