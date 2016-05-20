@@ -1,5 +1,14 @@
-<div class="container">
-  <button class="redirect-btn"><a href="#/" ng-click="get()">Next Blog</a></button>
+<style>
+  body {
+    background: #fafafa;
+    background-image: url('./styles/Game_Background.jpg');
+    background-size: cover;
+    background-repeat: repeat;
+    background-attachment: fixed;
+  }
+</style>
+<div class="gameBlog-container">
+  <button class="redirect-btn"><a href="#/">Next Blog</a></button>
   <div class="title">
     <h1>Game Blog</h1>
   </div>
@@ -9,12 +18,12 @@
         <textarea class="form-control text-title" type="text" required placeholder="Enter post title here..." rows="1"
                   ng-model="post.title"></textarea>
         <textarea class="form-control text-area" type="text" placeholder="Type here!"
-                  ng-model="post.text" cols="40" rows="3" required maxlength="160" ng-submit="addPost('game_blog')"></textarea>
+                  ng-model="post.text" cols="40" rows="3" required maxlength="160"></textarea>
 
-        <button class="btn submit-btn" type="submit" ng-click="addPost('game_blog')">Post</button>
+        <button class="btn submit-btn" type="submit" ng-click="addPost('gameBlog')">Post</button>
         <p class="text-length"> {{ 160 - post.text.length }} </p>
 
-        <input type="file" ngf-select ng-model="post.img" name="file" accept="image/*" ngf-max-size="20MB"
+        <input class="img-btn" type="file" ngf-select ng-model="post.img" name="file" accept="image/*" ngf-max-size="20MB"
                ngf-model-invalid="errorFile">
         <img ng-show="myForm.file.$valid" ngf-thumbnail="post.img" class="thumb">
         <button ng-click="post.img = null" ng-show="post.img">Remove</button>
@@ -39,3 +48,5 @@
     </div>
   </div>
 </div>
+
+

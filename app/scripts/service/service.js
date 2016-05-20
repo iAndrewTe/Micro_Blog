@@ -1,5 +1,4 @@
 angular.module('PostApp')
-
     .factory('Posts', ['$http', function($http) {
       return {
         get: function() {

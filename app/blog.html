@@ -1,5 +1,15 @@
+<style>
+  body {
+    background: #fafafa;
+    background-image: url('./styles/Background.jpeg');
+    background-size: cover;
+    background-repeat: repeat;
+    background-attachment: fixed;
+  }
+</style>
+
 <div class="container">
-  <button class="redirect-btn"><a href="#/gameBlog" >Next Blog</a></button>
+  <button class="redirect-btn"><a href="#/gameBlog">Next Blog</a></button>
   <div class="title">
     <h1>MicroBlog</h1>
   </div>
@@ -14,10 +24,10 @@
         <button class="btn submit-btn" type="submit" ng-click="addPost('micro_blog')">Post</button>
         <p class="text-length"> {{ 160 - post.text.length }} </p>
 
-        <input type="file" ngf-select ng-model="post.img" name="file" accept="image/*" ngf-max-size="20MB"
+        <input class="img-btn" type="file" ngf-select ng-model="post.img" name="file" accept="image/*" ngf-max-size="20MB"
              ngf-model-invalid="errorFile">
         <img ng-show="myForm.file.$valid" ngf-thumbnail="post.img" class="thumb">
-        <button ng-click="post.img = null" ng-show="post.img">Remove</button>
+        <button ng-click="post.img = null" ng-show="post.img" class="remove-btn">Remove</button>
       </form>
     </div>
   </div>
