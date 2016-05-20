@@ -27,6 +27,7 @@ function sendPosts(req,res) {
         res.send(err);
       }
       // send posts in JSON format
+
       res.send(post);
     })
   }

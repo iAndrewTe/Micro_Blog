@@ -38,7 +38,7 @@ button.close {
 
 .form-container {
   text-align: center;
-  margin: 0 50px;
+  margin: 20px 50px 0 50px;
 }
 
 .myForm {
@@ -89,8 +89,8 @@ button.close {
   margin: 17px 17px 10px 0;
 }
 .thumb {
-  width: 24px;
-  height: 24px;
+  width: 70%;
+  height: 70%;
   float: none;
   position: relative;
   top: 7px;
