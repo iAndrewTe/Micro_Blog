@@ -5,23 +5,23 @@ var multiPart = require('connect-multiparty');
 var multiPartMiddleWare = multiPart();
 
 var Post = mongoose.model('Post', {
+  title: {
+    type: String
+  },
   text: {
-    type: String,
-    default: ''
+    type: String
   },
   img: {
     type: String
   },
   blog_id: {
-    type: String,
-    default: ''
+    type: String
   }
 });
 
 function sendPosts(req,res) {
   // using mongoose to retrieve all posts in database
-  if (req.body.blog_id != undefined) {
-    Post.find({blog_id: req.body.blog_id}, function (err, post) {
+    Post.find({}, function (err, post) {
       // if its an err retrieving, send err
       if (err) {
         res.send(err);
@@ -30,7 +30,7 @@ function sendPosts(req,res) {
 
       res.send(post);
     })
-  }
+
 };
 
 function uploadPhoto(req, res) {
@@ -39,8 +39,8 @@ function uploadPhoto(req, res) {
 
   var uploadDate = new Date();
   var tempPath = file.path;
-  var targetPath = path.join("./app/images/" + uploadDate + file.name);
-  var savedPath = "images/" + uploadDate + file.name;
+  var targetPath = path.join("./app/blog_images/" + uploadDate + file.name);
+  var savedPath = "blog_images/" + uploadDate + file.name;
 
   fs.rename(tempPath, targetPath, function (err) {
     if (err) {
@@ -55,8 +55,12 @@ function uploadPhoto(req, res) {
 module.exports = function (app) {
 
   app.get('/api/blogposts', function (req, res) {
-    sendPosts(req, res);
+    Post.find(function(err, post) {
+      if (err)
+        res.send(err);
 
+      res.send(post);
+    });
   });
 
   app.use(multiPartMiddleWare);
@@ -64,6 +68,7 @@ module.exports = function (app) {
 
     if (req.files == undefined) {
       Post.create({
+        title: req.body.title,
         text: req.body.text,
         blog_id: req.body.blog_id
       }, function (err, post) {
@@ -75,6 +80,7 @@ module.exports = function (app) {
     } else {
       var picturePath = uploadPhoto(req, res); // upload image with post
       Post.create({
+        title: req.body.title,
         text: req.body.text,
         img: picturePath,
         blog_id: req.body.blog_id

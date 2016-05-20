@@ -1,17 +1,11 @@
-.blog-img {
-  padding: 10px;
-}
 
-.blog-text {
-  padding: 10px;
-  font-family: "source_sans", "Lucida Grande", "Lucida Sans", sans-serif;
-}
 
 body {
   background: #fafafa;
   background-image: url('./Background.jpeg');
   background-size: cover;
   background-repeat: repeat;
+  background-attachment: fixed;
 }
 
 .btn {
@@ -20,8 +14,10 @@ body {
 }
 
 button.close {
-  float: right;
-  padding: 5px 8px 0 0;
+  color: white;
+  position: absolute;
+  top: 2px;
+  right: 10px;
 }
 
 .container {
@@ -31,8 +27,7 @@ button.close {
   -webkit-box-shadow: 0 0 10px #000000;
   box-shadow: 0 0 10px #000000;
   height: 100%;
-  background: #2c2c2c;
-  opacity: 0.6;
+  background: rgba(0, 0, 0, 0.6);
   padding: 0;
 }
 
@@ -46,6 +41,13 @@ button.close {
   padding: 10px;
 }
 
+.image-container img {
+  display: block;
+  margin: 0 auto;
+  max-height: 450px;
+  max-width: 450px;
+}
+
 .out {
   text-align: center;
 }
@@ -55,6 +57,7 @@ button.close {
   color: white;
   margin: 20px 0 0 0;
   width: 100%;
+  position: relative;
 }
 
 .redirect-btn {
@@ -83,14 +86,31 @@ button.close {
   padding: 15px;
 }
 
+.text-container p {
+  padding: 10px;
+  font-family: "source_sans", "Lucida Grande", "Lucida Sans", sans-serif;
+}
+
 .text-length {
   color: white;
   float: right;
   margin: 17px 17px 10px 0;
 }
+
+.text-title {
+  margin-bottom: 10px;
+  resize: none;
+  font-size: 20px;
+}
+
+.title-container h2 {
+  font-family: "source_sans", "Lucida Grande", "Lucida Sans", sans-serif;
+  padding: 15px;
+  margin-left: 10px;
+}
 .thumb {
-  width: 70%;
-  height: 70%;
+  width: 50px;
+  height: 50px;
   float: none;
   position: relative;
   top: 7px;
