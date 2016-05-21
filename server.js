@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 
-mongoose.connect('mongodb://127.0.0.1/MEANTest');
+mongoose.connect('mongodb://microblog_db_1:27017/MEANTest');
 
 app.use(express.static(__dirname + '/app'));
 app.use(morgan('dev'));

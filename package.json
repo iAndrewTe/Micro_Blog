@@ -1,5 +1,9 @@
 {
-  "private": true,
+  "name": "Micro-Blog-Webapp",
+  "private": false,
+  "version": "0.0.1",
+  "description": "Node.js webapp for 10Kc",
+  "author": "Andrew Te <iandrewte@gmail.com>",
   "engines": {
     "node": ">=4"
   },
