@@ -8,8 +8,6 @@ RUN cat Micro_Blog/package.json
 
 WORKDIR Micro_Blog/app
 
-RUN ls . 
-
 RUN npm install -g bower
  
 RUN bower install --allow-root
