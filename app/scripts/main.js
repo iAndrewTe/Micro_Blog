@@ -8,7 +8,7 @@ angular.module('PostApp', ['ngRoute', 'ngFileUpload'])
             })
             .when('/', {
                 url: '/',
-                templateUrl: 'blog.html',
+                templateUrl: 'MicroBlog.html',
                 controller: 'mainController'
             });
 

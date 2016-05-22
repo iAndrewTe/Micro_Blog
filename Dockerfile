@@ -2,9 +2,19 @@ FROM node:argon
 
 RUN git clone https://github.com/iAndrewTe/Micro_Blog.git
 
-WORKDIR /Micro_Blog
+RUN cat Micro_Blog/server.js
 
-ADD package.json /Micro_Blog/package.json
+RUN cat Micro_Blog/package.json
+
+WORKDIR Micro_Blog/app
+
+RUN ls . 
+
+RUN npm install -g bower
+ 
+RUN bower install ng-file-upload
+
+WORKDIR ..
 
 RUN npm install
 
