@@ -12,7 +12,7 @@ RUN ls .
 
 RUN npm install -g bower
  
-RUN bower install ng-file-upload
+RUN bower install --allow-root
 
 WORKDIR ..
 
