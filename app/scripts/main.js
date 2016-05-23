@@ -1,5 +1,6 @@
 angular.module('PostApp', ['ngRoute', 'ngFileUpload'])
-    .config(function($routeProvider) {
+    .config(function($routeProvider, $locationProvider) {
+        $locationProvider.html5Mode(true);
         $routeProvider
             .when('/login', {
               url: '/login',
@@ -45,6 +46,13 @@ angular.module('PostApp', ['ngRoute', 'ngFileUpload'])
             return false;
         };
 
+        $scope.nextBlog = function () {
+            if ($location.path() == "/micro_blog") {
+                $location.path('/game_blog');
+            } else {
+                $location.path('micro_blog');
+            }
+        }
         $scope.setError = function () {
             $scope.error = false;
             $scope.user.name = '';

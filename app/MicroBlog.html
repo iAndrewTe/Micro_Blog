@@ -11,11 +11,11 @@
 <div class="logged-in" style="background: rgba(0,0,0, 0.6); color: white;">
   <p>Signed in as {{ currentUser }}</p>
 
-  <a href="#/login" style="color: white;" ng-click="logOut()" ng-show="loggedIn">Log out</a>
-  <a href="#/login" style="color: white;" ng-show="!loggedIn">Log in</a>
+  <a href="/login" target="" style="color: white;" ng-click="logOut()" ng-show="loggedIn">Log out</a>
+  <a href="/login" style="color: white;" ng-show="!loggedIn">Log in</a>
 </div>
 <div class="container" style="background: rgba(0,0,0, 0.6);">
-  <button><a href="#/game_blog">Next Blog</a></button>
+  <button ng-click="nextBlog()">Next Blog</button>
   <div class="title" style="color: white;">
     <h1>MicroBlog</h1>
   </div>
