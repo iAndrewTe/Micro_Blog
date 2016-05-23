@@ -8,8 +8,14 @@
   }
 </style>
 
+<div class="logged-in" style="background: rgba(0,0,0, 0.6); color: white;">
+  <p>Signed in as {{ currentUser }}</p>
+
+  <a href="#/login" style="color: white;" ng-click="logOut()" ng-show="loggedIn">Log out</a>
+  <a href="#/login" style="color: white;" ng-show="!loggedIn">Log in</a>
+</div>
 <div class="container" style="background: rgba(0,0,0, 0.6);">
-  <button><a href="#/gameBlog">Next Blog</a></button>
+  <button><a href="#/game_blog">Next Blog</a></button>
   <div class="title" style="color: white;">
     <h1>MicroBlog</h1>
   </div>
@@ -35,7 +41,7 @@
 
   <div class="post-container" style="color: white;" ng-repeat="text in posts.slice().reverse() track by $index">
 
-        <button class="close" ng-click="deletePost(text._id)">&times</button>
+        <button class="close" ng-click="deletePost(text._id)" ng-show="text.user == currentUser">&times</button>
     <div class="title-container">
       <h2> {{ text.title }}</h2>
     </div>
@@ -47,5 +53,7 @@
     <div class="text-container">
       <p> {{ text.text }} </p>
     </div>
+
+    <p class="user-text"> Posted by {{ text.user }}</p>
   </div>
 </div>

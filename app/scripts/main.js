@@ -1,33 +1,97 @@
 angular.module('PostApp', ['ngRoute', 'ngFileUpload'])
     .config(function($routeProvider) {
         $routeProvider
-            .when('/:blog_id', {
-                url: '/gameBlog',
-                templateUrl: 'GameBlog.html',
-                controller: 'mainController',
+            .when('/login', {
+              url: '/login',
+              templateUrl: 'LoginPage.html',
+              controller: 'mainController'
             })
-            .when('/', {
-                url: '/',
+            .when('/micro_blog', {
+                url: '/micro_blog',
                 templateUrl: 'MicroBlog.html',
                 controller: 'mainController'
-            });
-
-
+            })
+            .when('/game_blog', {
+                url: '/game_blog',
+                templateUrl: 'GameBlog.html',
+                controller: 'mainController'
+            })
+            .otherwise({
+                redirectTo: '/login'
+            })
     })
-    .controller('mainController', ['$scope', '$http', 'Posts', 'Upload', '$routeParams', function($scope, $http, Posts, Upload, $routeParams) {
+    .controller('mainController', ['$scope', '$http', 'Posts', 'Authenticate','Upload', '$routeParams', '$location',
+                            function($scope, $http, Posts, Authenticate, Upload, $routeParams, $location) {
+        $scope.$watch(Authenticate, function () {
+            $scope.currentUser = Authenticate.currentUser();
+            $scope.loggedIn = Authenticate.isLoggedIn;
+        });
+        $scope.user = {};
         $scope.post = {};
+        $scope.error = false;
+        var accountExists = function (data, userName, passWord)  {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].name == userName && data[i].password == passWord)
+                    return true;
+            }
+            return false;
+        };
+
+        var userExist = function (data, userName) {
+            for (var i = 0; i < data.length; i++) {
+                if (data[i].name == userName)
+                    return true;
+            }
+            console.log('We went here!')
+            return false;
+        };
+
+        $scope.setError = function () {
+            $scope.error = false;
+            $scope.user.name = '';
+            $scope.user.password = '';
+        }
+        $scope.checkUser = function (userName, passWord) {
+            $http.get('/microblog/users').success(function (data) {
+                if (userName == undefined || passWord == undefined){
+                } else if (!userExist(data, userName)) {
+                    Posts.createUser($scope.user);
+                    $scope.error = false;
+                    $location.path('/micro_blog');
+                } else {
+                    $scope.error = true;
+                }
+            });
+        };
+
+        $scope.authenticate = function (userName, passWord) {
+            $http.get('/microblog/users').success(function (data) {
+                if (userName == undefined || passWord == undefined){}
+                else if (accountExists(data, userName, passWord)) {
+                    Authenticate.setCurrentUser(userName);
+                    Authenticate.isLoggedIn = true;
+                    $scope.error = false;
+                    $location.path('/micro_blog');
+                } else {
+                    // ALERT THAT USER DOES NOT EXIST
+                    $scope.error = true;
+                }
+            });
+        };
+
+        $scope.logOut = function () {
+            Authenticate.isLoggedIn = false;
+            Authenticate.setCurrentUser('Guest');
+        };
 
         function collectPosts(data) {
-            var blog = $routeParams.blog_id;
-            if (blog == undefined)
-                blog = "micro_blog";
-
+            var blog_id = $location.path().replace('/', '');
             var blogposts = [];
-
             for (var i =0; i < data.length; i++) {
-                if (data[i].blog_id == blog)
+                if (data[i].blog_id == blog_id)
                     blogposts.push(data[i]);
             }
+            $scope.post = {};
             $scope.posts = blogposts;
         };
 
@@ -36,7 +100,7 @@ angular.module('PostApp', ['ngRoute', 'ngFileUpload'])
             collectPosts(data);
          });
 
-     $scope.addPost= function (blog_id) {
+       $scope.addPost= function (blog_id) {
             $scope.post.blog_id = blog_id;
             if ($scope.post.title && $scope.post.text && $scope.post.img) {
 
@@ -45,7 +109,8 @@ angular.module('PostApp', ['ngRoute', 'ngFileUpload'])
                   data: {
                     title: $scope.post.title,
                     text: $scope.post.text,
-                    blog_id: blog_id
+                    blog_id: blog_id,
+                    user: Authenticate.currentUser()
                   },
                   file: $scope.post.img
                   }).then(function (res) {
@@ -58,6 +123,7 @@ angular.module('PostApp', ['ngRoute', 'ngFileUpload'])
                       console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
                     });
             } else if ($scope.post.title && $scope.post.text) {
+                $scope.post.user = Authenticate.currentUser();
                 Posts.create($scope.post)
                     .success(function(data) {
                         collectPosts(data);
@@ -65,11 +131,10 @@ angular.module('PostApp', ['ngRoute', 'ngFileUpload'])
             }
         };
 
-        $scope.deletePost = function(id, blog_id) {
+        $scope.deletePost = function(id) {
             Posts.delete(id)
                 .success(function (data) {
                     collectPosts(data);
                 });
         };
-
     }]);

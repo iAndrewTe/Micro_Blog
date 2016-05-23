@@ -1,6 +1,6 @@
 angular.module('PostApp')
     .factory('Posts', ['$http', function($http) {
-      return {
+        return {
         get: function() {
           return $http.get('/api/blogposts');
         },
@@ -9,6 +9,17 @@ angular.module('PostApp')
         },
         delete: function(id) {
           return $http.delete('/api/blogposts/' + id);
+        },
+        createUser: function(userData) {
+            return $http.post('/microblog/users', userData);
         }
       }
-    }]);
+    }])
+    .factory('Authenticate', function () {
+        var currentUser = "Guest";
+        return {
+            isLoggedIn: false,
+            setCurrentUser: function (userName) {currentUser = userName;},
+            currentUser: function() {return currentUser;}
+        }
+    });

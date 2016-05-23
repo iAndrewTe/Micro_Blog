@@ -5,18 +5,16 @@ var multiPart = require('connect-multiparty');
 var multiPartMiddleWare = multiPart();
 
 var Post = mongoose.model('Post', {
-  title: {
-    type: String
-  },
-  text: {
-    type: String
-  },
-  img: {
-    type: String
-  },
-  blog_id: {
-    type: String
-  }
+  title: String,
+  text: String,
+  img: String,
+  blog_id: String,
+  user: String
+});
+
+var User = mongoose.model('Users', {
+  name: String,
+  password: String
 });
 
 function sendPosts(req,res) {
@@ -54,6 +52,7 @@ function uploadPhoto(req, res) {
 };
 module.exports = function (app) {
 
+
   app.get('/api/blogposts', function (req, res) {
     Post.find(function(err, post) {
       if (err)
@@ -63,6 +62,15 @@ module.exports = function (app) {
     });
   });
 
+  app.get('/microblog/users', function (req, res) {
+    User.find(function(err, users) {
+      if (err)
+          res.send(err);
+
+      res.send(users);
+    })
+  });
+  
   app.use(multiPartMiddleWare);
   app.post('/api/blogposts', function (req, res) {
 
@@ -70,7 +78,8 @@ module.exports = function (app) {
       Post.create({
         title: req.body.title,
         text: req.body.text,
-        blog_id: req.body.blog_id
+        blog_id: req.body.blog_id,
+        user: req.body.user
       }, function (err, post) {
         if (err)
           res.send(err);
@@ -83,7 +92,8 @@ module.exports = function (app) {
         title: req.body.title,
         text: req.body.text,
         img: picturePath,
-        blog_id: req.body.blog_id
+        blog_id: req.body.blog_id,
+        user: req.body.user
       }, function (err, post) {
         if (err)
           res.send(err);
@@ -91,6 +101,18 @@ module.exports = function (app) {
         sendPosts(req, res);
       });
     };
+  });
+
+  app.post('/microblog/users', function (req, res) {
+    User.create({
+      name: req.body.name,
+      password: req.body.password
+    }, function (err, users) {
+      if (err)
+          res.send(err);
+
+      res.send(users);
+    })
   });
 
   app.delete('/api/blogposts/:post_id', function (req, res) {
