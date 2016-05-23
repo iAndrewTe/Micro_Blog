@@ -55,6 +55,7 @@ angular.module('PostApp', ['ngRoute', 'ngFileUpload'])
                 if (userName == undefined || passWord == undefined){
                 } else if (!userExist(data, userName)) {
                     Authenticate.setCurrentUser(userName);
+                    Authenticate.isLoggedIn = true;
                     $scope.error = false;
                     Posts.createUser($scope.user);
                     $location.path('/micro_blog');
