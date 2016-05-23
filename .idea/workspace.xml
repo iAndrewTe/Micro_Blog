@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8772583e-a97e-4990-a238-0ced81b2d8b4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/images/Login-Logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/images/Login-Picture.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/LoginPage.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/scripts/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/reset.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/styles/style.css" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.babelrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.editorconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.gitattributes" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/scripts/app.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/GameBlog.html" afterPath="$PROJECT_DIR$/app/GameBlog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/MicroBlog.html" afterPath="$PROJECT_DIR$/app/MicroBlog.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/bower.json" afterPath="$PROJECT_DIR$/app/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/main.js" afterPath="$PROJECT_DIR$/app/scripts/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/service/service.js" afterPath="$PROJECT_DIR$/app/scripts/service/service.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/styles/main.css" afterPath="$PROJECT_DIR$/app/styles/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes.js" afterPath="$PROJECT_DIR$/routes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
-    </list>
+    <list default="true" id="8772583e-a97e-4990-a238-0ced81b2d8b4" name="Default" comment="" />
     <ignored path="MEANTest.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -453,12 +432,12 @@
       <workItem from="1463782737517" duration="260000" />
       <workItem from="1463800809001" duration="109000" />
       <workItem from="1463894903241" duration="116000" />
-      <workItem from="1463942956458" duration="28396000" />
+      <workItem from="1463942956458" duration="28465000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="46339000" />
+    <option name="totallyTimeSpent" value="46408000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="228" y="23" width="1692" height="1053" extended-state="0" />

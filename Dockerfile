@@ -2,10 +2,6 @@ FROM node:argon
 
 RUN git clone https://github.com/iAndrewTe/Micro_Blog.git
 
-RUN cat Micro_Blog/server.js
-
-RUN cat Micro_Blog/package.json
-
 WORKDIR Micro_Blog/app
 
 RUN npm install -g bower
