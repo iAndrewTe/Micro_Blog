@@ -42,7 +42,6 @@ angular.module('PostApp', ['ngRoute', 'ngFileUpload'])
                 if (data[i].name == userName)
                     return true;
             }
-            console.log('We went here!')
             return false;
         };
 
@@ -55,10 +54,12 @@ angular.module('PostApp', ['ngRoute', 'ngFileUpload'])
             $http.get('/microblog/users').success(function (data) {
                 if (userName == undefined || passWord == undefined){
                 } else if (!userExist(data, userName)) {
-                    Posts.createUser($scope.user);
+                    Authenticate.setCurrentUser(userName);
                     $scope.error = false;
+                    Posts.createUser($scope.user);
                     $location.path('/micro_blog');
                 } else {
+                    // ALERT THAT USER EXIST
                     $scope.error = true;
                 }
             });
